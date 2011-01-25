@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icefaces/icefaces.iml" filepath="$PROJECT_DIR$/icefaces/icefaces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primefaces/primefaces.iml" filepath="$PROJECT_DIR$/primefaces/primefaces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/richfaces/richfaces.iml" filepath="$PROJECT_DIR$/richfaces/richfaces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testrichfaces.iml" filepath="$PROJECT_DIR$/testrichfaces.iml" />
+    </modules>
+  </component>
+</project>
+

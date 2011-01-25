@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.4dconcept.benchmark</groupId>
+        <artifactId>jsf-benchmark</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>test</artifactId>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-copy-plugin</artifactId>
+                <version>0.2-beta-4</version>
+                <executions>
+                    <execution>
+                        <id>richfaces</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>target/web/richfaces</targetPath>
+                                    <unpack>true</unpack>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>${project.groupId}</groupId>
+                                            <artifactId>richfaces</artifactId>
+                                            <version>${project.version}</version>
+                                            <type>war</type>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>target/web/primefaces</targetPath>
+                                    <unpack>true</unpack>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>${project.groupId}</groupId>
+                                            <artifactId>primefaces</artifactId>
+                                            <version>${project.version}</version>
+                                            <type>war</type>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>target/web/icefaces</targetPath>
+                                    <unpack>true</unpack>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>${project.groupId}</groupId>
+                                            <artifactId>icefaces</artifactId>
+                                            <version>${project.version}</version>
+                                            <type>war</type>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>7.2.2.v20101205</version>
+                <configuration>
+
+                    <stopPort>9968</stopPort>
+                    <stopKey>foo</stopKey>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>8080</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                    <contextHandlers>
+                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <war>target/web/icefaces</war>
+                            <contextPath>/icefaces</contextPath>
+                        </contextHandler>
+                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <war>target/web/primefaces</war>
+                            <contextPath>/primefaces</contextPath>
+                        </contextHandler>
+                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <war>target/web/richfaces</war>
+                            <contextPath>/richfaces</contextPath>
+                        </contextHandler>
+                    </contextHandlers>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.7.1</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>surefire-itest</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skip>false</skip>
+                            <includes>
+                                <include>**/TestHtmlUnit.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>surefire-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skip>false</skip>
+
+                            <excludes>
+                                <exclude>**/TestHtmlUnit.java</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

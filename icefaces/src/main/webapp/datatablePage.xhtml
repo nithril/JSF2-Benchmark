@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+
+    <link rel='stylesheet' type='text/css' href='./css/showcase_style.css'/>
+    <link rel='stylesheet' type='text/css' href='./css/showcase_overrides.css'/>
+    <link rel='stylesheet' type='text/css' href='./css/showcase_layout.css'/>
+    <link rel='stylesheet' type='text/css' href='./xmlhttp/css/rime/rime.css'/>
+    <link rel='stylesheet' type='text/css' href='./css/showcase_layout.css'/>
+
+    <link href="./css/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="./css/images/favicon.ico" rel="icon" type="image/x-icon"/>
+</h:head>
+
+
+<h:body>
+    <h:form id="datatableForm">
+        <ui:include src="component/datatable.xhtml">
+            <ui:param name="dataTableBean" value="#{dataTableBean}"/>
+        </ui:include>
+    </h:form>
+</h:body>
+</html>

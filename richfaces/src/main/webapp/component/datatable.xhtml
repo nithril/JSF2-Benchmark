@@ -1,0 +1,31 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:rich="http://richfaces.org/rich">
+
+    <rich:dataScroller for="booksTable" maxPages="10" reRender="booksTable" id="datatableScroller"/>
+
+    <rich:dataTable id="booksTable" rows="15" value="#{datatableBean.books}" var="book">
+        <rich:column>
+            <f:facet name="header">
+                <h:outputText value="isbn"/>
+            </f:facet>
+            <h:outputText value="#{book.isbn}"/>
+        </rich:column>
+
+        <rich:column>
+            <f:facet name="header">
+                <h:outputText value="author"/>
+            </f:facet>
+            <h:outputText value="#{book.author}"/>
+        </rich:column>
+
+        <rich:column>
+            <f:facet name="header">
+                <h:outputText value="title"/>
+            </f:facet>
+            <h:outputText value="#{book.title}"/>
+        </rich:column>
+    </rich:dataTable>
+
+</f:view>

@@ -1,0 +1,32 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <p:dataTable id="booksTable" var="book" value="#{datatableBean.books}"
+                 paginator="true" rows="15" paginatorPosition="top"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rowsPerPageTemplate="5,10,15">
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="isbn"/>
+            </f:facet>
+            <h:outputText value="#{book.isbn}"/>
+        </p:column>
+
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="author"/>
+            </f:facet>
+            <h:outputText value="#{book.author}"/>
+        </p:column>
+
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="title"/>
+            </f:facet>
+            <h:outputText value="#{book.title}"/>
+        </p:column>
+    </p:dataTable>
+
+</f:view>

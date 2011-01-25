@@ -1,0 +1,45 @@
+
+html, body, div, table, img, fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow: scroll;
+
+}
+
+body, pre, PRE {
+    font-family: Tahoma, Sans-Serif;
+    font-size: 11px;
+    color: #484848;
+    background-color: #ffffff;
+}
+
+/* for some reson IE things a form should have dimensions, */
+form {
+    padding: 0;
+    margin: 0;
+}
+
+table {
+    font-size: 11px;
+}
+
+ul {
+    margin-left: 15px;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    background: url( '../xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;
+    padding-left: 22px;
+    padding-bottom: 3px;
+}
+
+h2 {
+    font: 18px tahoma;
+    color: #646464;
+}

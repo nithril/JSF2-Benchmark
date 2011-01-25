@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Maven: com.4dconcept:core:1.0.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/4dconcept/core/1.0.0-SNAPSHOT/core-1.0.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/core/pom-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/4dconcept/core/1.0.0-SNAPSHOT/core-1.0.0-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/core/pom-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/4dconcept/core/1.0.0-SNAPSHOT/core-1.0.0-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

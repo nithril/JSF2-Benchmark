@@ -1,0 +1,1020 @@
+/*
+ * Version: MPL 1.1/GPL 2.0/LGPL 2.1
+ *
+ * "The contents of this file are subject to the Mozilla Public License
+ * Version 1.1 (the "License"); you may not use this file except in
+ * compliance with the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+ * License for the specific language governing rights and limitations under
+ * the License.
+ *
+ * The Original Code is ICEfaces 1.5 open source software code, released
+ * November 5, 2006. The Initial Developer of the Original Code is ICEsoft
+ * Technologies Canada, Corp. Portions created by ICEsoft are Copyright (C)
+ * 2004-2006 ICEsoft Technologies Canada, Corp. All Rights Reserved.
+ *
+ * Contributor(s): _____________________.
+ *
+ * Alternatively, the contents of this file may be used under the terms of
+ * the GNU Lesser General Public License Version 2.1 or later (the "LGPL"
+ * License), in which case the provisions of the LGPL License are
+ * applicable instead of those above. If you wish to allow use of your
+ * version of this file only under the terms of the LGPL License and not to
+ * allow others to use your version of this file under the MPL, indicate
+ * your decision by deleting the provisions above and replace them with
+ * the notice and other provisions required by the LGPL License. If you do
+ * not delete the provisions above, a recipient may use your version of
+ * this file under either the MPL or the LGPL License."
+ *
+ */
+
+div.clearer {
+    clear:both;
+	height:0px;
+    visibility: hidden;
+    line-height:.01em;
+	padding:0;
+	margin:0;
+}
+
+/* header begin */
+
+div.header_container {
+    width: 100%;
+    height: 159px;
+    min-width: 730px;
+    background-image: url( './images/banner_bg.gif' );
+    background-repeat: repeat-x;
+    background-position: left top;
+    float:left;
+    width:100%;
+}
+div.header_content{
+    height: 159px;
+    background-image: url( './images/banner_logo.jpg' );
+    background-repeat: no-repeat;
+    background-position: right top;
+    float:left;
+    width:100%;
+}
+
+/* header end */
+
+/* body start */
+
+/* provides a continer to center a child div in */
+div.body_container{
+   float:left;
+   margin-top:-80px;
+   width:100%;
+}
+/* centers in parent as long as parent is larger then child*/
+div.body_content {
+   margin:0 auto;
+   width:980px;
+   padding-left: 25px;
+}
+div.body_content div{
+   /*height: 100px;*/
+}
+div.navigationContainer {
+    border: none;
+    float: left;
+    width:230px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+/* margin-left should be updated along with the relative position of */
+div.contentContainer {
+    background: none;
+    border: none;
+    float:left;
+    padding-left: 6px;
+    width:720px;
+}
+
+table.componentTabSetContainer {
+    width: 99%;
+}
+
+/* footer begin */
+div.footer_container {
+    float: left;
+    width: 100%;
+    height: 95px;
+    min-width: 705px;
+    background-image: url( './images/bgslice_footer.jpg' );
+    background-repeat: repeat-x;
+    background-position: bottom left;
+}
+div.footer_content{
+    height: 95px;
+    background-image: url( './images/footer_faces.jpg' );
+    background-repeat: no-repeat;
+    background-position: bottom right;
+}
+
+div.footer_content div{
+   float:left;
+   padding-top:60px;
+   padding-left:10px;
+   color: white;
+}
+div.footer_content a, div.footer_content a:hover{
+   color: orange;
+   text-decoration: none;
+}
+div.footer_content a{
+
+}
+
+div.footer_content a:hover{
+   text-decoration: underline;
+}
+/* footer end */
+
+/* controls the appearance of links throughout the application */
+a:link, a:hover, a:visited, a:active {
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-weight: normal;
+    text-decoration: none;
+    color: #000;
+}
+a:hover{
+    color: #000033;
+    text-decoration:underline
+}
+a:visited{
+    /*color: #104e5b;*/
+}
+a:active{
+    color: #318496;
+}
+
+/* doc view template decloration */
+.docViewContainer, .docViewNavigation, .docViewContent{
+    float:left;
+}
+.docViewNavigation, .docViewContent{
+    height: 500px;
+}
+.docViewNavigation{
+    width: 150px;
+    overflow: scroll;
+}
+.docViewContent{
+    width: 514px;
+    border: 1px solid #D9D9D9;
+}
+.docViewContainer{
+    width: 670px;
+}
+.docViewContainer a{
+    color: #444444;
+}
+a.docViewNodeSelectedtrue{
+    font-weight: bold;
+}
+.docViewContainer a:visited{
+    color: #104e5b;
+}
+.docViewContainer a:hover{
+    text-decoration: none;
+    color: #318496;
+}
+
+.includeIframe{
+    width:100%;
+    height:100%;
+    border: none;
+    background-color: white;
+    font-size: 11pt;
+}
+
+/* Main wrapper class for all component examples */
+.componentBox {
+    float: left;
+    padding: 0 0 0 0;
+}
+/* Parent of componentBox when component examples are used in portlets */
+.componentBoxPortlet{
+    background-color:white;   
+}
+
+.synopsisBox {
+    border: none;
+    min-height: 36px;
+    padding: 0 0 0 50px;
+    background: url( './images/icon_info.gif' ) no-repeat top left;
+    display: block;
+}
+
+.exampleBox {
+    margin: 15px 15px 0 0;
+    padding: 15px;
+    background: #FFF;
+    border: 1px solid #d9d9d9;
+    display: block;
+    float:left;
+}
+
+.synopsisBox .iceOutTxt {
+    display: block;
+}
+
+/* 2 + 13 =15 or the exampleBox margin. */
+/* give outline effect for server chagned values boxes. */
+.backBeanChangeContainer{
+    padding: 0;
+}
+
+.backBeanChangeTitle{
+    margin: 0;
+    height: 20px;
+    width: 275px;
+    padding: 6px 0 0 8px;
+    background: #FFF url( '../xmlhttp/css/rime/css-images/PnlHdr_bgslice.gif' ) repeat-x top left;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.backBeanChangeBody{
+    padding:2px;
+}
+
+.backBeanChangeBody > div.icePnlGrp:first-child {
+    padding: 15px;
+    background-color: white;
+}
+
+.iceOutTxt {
+    color: #484848;
+}
+
+.iceSelOneRb-dis {
+    border: 0;
+    background-color: #FFFFFF;
+    color: #444444;
+}
+
+h3 {
+    font: 11px tahoma;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+.columnsColumn {
+    border: none;
+}
+
+/*
+------------- Theme Controller
+*/
+
+.themeControlContainer {
+    /*float:left;*/
+    border:1px solid #D9D9D9;
+    height:28px;
+    margin-bottom:7px;
+    padding: 7px 5px 5px 5px;
+    text-align:left;
+    vertical-align:middle;
+    white-space: nowrap;
+}
+
+.themeControlContainer .changeThemeButton {
+    border: 1px solid #d9d9d9;
+    display:inline;
+    margin-top:3px;
+    padding: 4px 25px 4px 10px;
+    width: 70px;
+    background-image: url('./images/theme_refresh.png');
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+.themeSelectOneMenu {
+    margin:0;
+    padding:0;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top:5px;
+    border: 1px solid #d9d9d9;
+    /*padding-top: 2px;*/
+    width: 90px;
+}
+
+.themeControlContainer a {
+    color: #444;
+}
+
+/*
+------------- Navigation Tree 
+*/
+.navigationTree{
+
+}
+.navigationTreeRow {
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: 0;
+}
+
+.navigationTreeRow a {
+    text-decoration: none;
+    color: #000000;
+    cursor: pointer;
+    padding: 0;
+    padding-left: 3px;
+    vertical-align: middle;
+}
+
+.navigationTreeRow a:hover {
+    text-decoration: underline;
+}
+
+.navigationTreeRow img {
+    border: 0;
+    vertical-align: middle;
+    background-repeat: repeat-y;
+    padding: 0;
+}
+.navigationTreeRow > img{
+    width: 16px;
+}
+
+
+.navigationTreeRow a img {
+/* vertical-align: top; - Bug in FF, when img has focus it is not highlighted with a box.*/
+    background-repeat: repeat-y;
+    border: 0;
+    padding: 0;
+}
+
+.navigationTreeRow * div {
+    padding: 0;
+    vertical-align: middle;
+}
+
+
+
+/* node selection and rollover state. */
+a.navNodeSelecttrue:hover, a.navNodeSelectfalse:hover {
+    color: #318496;
+    text-decoration: none;
+    padding-left: 16px;
+    background: url( './images/navigation_tree/tree_node_rollover.gif' ) no-repeat left center;
+}
+
+a.navNodeSelecttrue:visited, a.navNodeSelectfalse:visited {
+    /*color: #104e5b;*/
+}
+
+a.navNodeSelecttrue {
+    font-weight: bold;
+    padding-left: 16px;
+    background: url( './images/navigation_tree/tree_node_selected.gif' ) no-repeat left center;
+}
+
+a.navNodeSelectfalse {
+    padding-left: 16px;
+    background: url( './images/navigation_tree/tree_node.gif' ) no-repeat left center;
+}
+
+a.navNodeFoldertrueExpandedfalse, a.navNodeFoldertrueExpandedfalse:hover{
+    padding-left: 20px;
+    background: url( './images/navigation_tree/tree_folder_closed.gif' ) no-repeat left center;
+}
+
+a.navNodeFoldertrueExpandedtrue, a.navNodeFoldertrueExpandedtrue:hover{
+    padding-left: 20px;
+    background: url( './images/navigation_tree/tree_folder_closed.gif' ) no-repeat left center;
+}
+
+/*
+---------- end tree
+*/
+
+/* drag and drop demo */
+.dndCartDesc span:first-child {
+    font-weight: bold;
+}
+.dndCartDesc{
+    margin-top:15px;
+    margin-bottom:5px;
+    float:left;
+}
+.inventoryItemContainer{
+    float: left;
+    margin: 8px;
+    border: 1px solid #d9d9d9;
+    width: 100px;
+}
+.inventoryItemContainer div{
+    text-align: center;
+}
+
+.chartContainer{
+    float:left;
+    width: 462px;
+    border: 1px solid #d9d9d9;
+}
+.returnItemButton {
+    border: 1px solid #d9d9d9;
+    background-color: white;
+    display:inline;
+    padding: 4px 25px 4px 10px;
+    background-image: url('../images/dragDrop/return_arrow.png');
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+.cartDropTarget{
+    background-color: #fda505;
+}
+
+/* effects demo */
+.effectWrapperContainer{
+    float:left;
+    margin: 15px;
+    width: 125px;
+    height: 80px;
+    padding: 2px;
+}
+.effectWrapperContainer:hover {
+    text-decoration: none;
+}
+.effectsDemoContainer{
+    /*float:left;*/
+    width: 125px;
+    height: 80px;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid #d9d9d9;
+    overflow: hidden;
+    background:url('../images/effect_gradient.gif') bottom left repeat-x;
+}
+.effectsDemoContainer > div{
+    /*float:left;*/
+    width:100%;
+    font: 11px tahoma;
+    vertical-align: middle;
+    text-align: center;
+    color: #484848;
+    /*padding: 7px;*/
+    font-weight: bold;
+}
+.effectsDemoTitle{
+    background: #FFF url( '../xmlhttp/css/rime/css-images/PnlHdr_bgslice.gif' ) repeat-x center left;
+    border-bottom: 1px solid #d9d9d9;
+}
+.effectsDemoContainer:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
+.effectsDemoContainer:hover .iceOutTxt {
+    color: #318496;
+    text-decoration: none;
+}
+.effectsDemoContainer a:hover{
+    text-decoration: none;
+}
+
+/* DATA PAGINATOR EXAMPLE */
+.dataPaginatorDataTable {
+    float: left;
+    margin-top: 20px;
+}
+
+.dataPaginatorVertical_true {
+
+}
+
+.dataPaginatorVertical_false {
+    clear: left;
+}
+
+/* END DATA PAGINATOR EXAMPLE */
+
+
+
+/* main styles for individual component examples */
+
+.synopsisBox > span:first-child,
+    div.firstChildTitle > span:first-child,
+    div.firstChildTitle > div > span:first-child {
+    font-weight: bold;
+}
+
+.title {
+    color: yellow;
+}
+
+.exampleBox a, .synopsisBox a, .exampleBox a:visited, .synopsisBox a:visited,
+    .exampleBox a:hover, .synopsisBox a:hover {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+}
+
+.exampleBox a, .synopsisBox a, .exampleBox a:visited, .synopsisBox a:visited {
+    text-decoration: none;
+}
+
+.exampleBox a:hover, .synopsisBox a:hover {
+    text-decoration: underline;
+}
+
+.exampleBox .iceMnuItm a:hover {
+    text-decoration: none;
+}
+
+.centerBox {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+table.verticalAlignTop td {
+    vertical-align: top;
+}
+div.verticalAlignMdl{
+    vertical-align: middle;
+}
+
+/* connection status style for tabbed template */
+.navConnectionStatus {
+    left:900px;
+    position:relative;
+    top:33px;
+}
+
+
+/* left navigation panel collapsible, is not effected by theme changes.  */
+.navPnlClpsbl, .navPnlClpsblColpsd {
+    border-bottom: none;
+}
+
+.navPnlClpsblCnt .navPnlClpsbl {
+    border: none;
+}
+
+.navPnlClpsblHdr {
+    font: 11px tahoma;
+    color: #484848;
+    padding: 3px 0 1px 4px;
+    font-weight: bold;
+    height: 20px;
+    background: #FFF url( '../xmlhttp/css/rime/css-images/PnlHdr_bgslice.gif' ) repeat-x top left;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.navPnlClpsblHdr .iceCmdLnk, .navPnlClpsblColpsdHdr .iceCmdLnk {
+    padding-left: 22px;
+}
+
+.navPnlClpsblHdr .icePnlGrp a {
+	font-weight: bold;
+}
+
+.navPnlClpsblCnt {
+    font: 11px / 17px tahoma;
+    color: #494949;
+    background: #f5f5f5;
+    padding: 4px 4px 4px 9px;
+    border-bottom: none;
+}
+
+.navPnlClpsblCnt .navPnlClpsblHdr {
+    font: 11px tahoma;
+    color: #484848;
+    padding: 0 0 0 0;
+    font-weight: bold;
+    height: 20px;
+    border: none;
+    margin-top: 8px;
+}
+
+.navPnlClpsblCnt .navPnlClpsblHdr .navOutTxt {
+    background: none;
+}
+
+.navPnlClpsblCnt .navPnlClpsblColpsdHdr {
+    font: 11px tahoma;
+    color: #484848;
+    padding: 0 0 0 0;
+    font-weight: bold;
+    height: 20px;
+    border: none;
+    margin-top: 8px;
+}
+
+.navPnlClpsblCnt .navPnlClpsblColpsdHdr .iceOutTxt{
+    background: none;
+}
+
+.navPnlClpsblCnt .navPnlClpsblCnt {
+    border-left: none;
+    border-right: none;
+    padding: 0 0 0 10px;
+}
+
+.navPnlClpsblCnt .navPnlClpsblColpsd {
+    border: none;
+}
+
+.navPnlClpsblColpsdHdr {
+    font: 11px tahoma;
+    color: #484848;
+    padding: 3px 0 1px 4px;
+    font-weight: bold;
+    height: 20px;
+    background: #FFF url( '../xmlhttp/css/rime/css-images/PnlHdr_bgslice.gif' ) repeat-x top left;
+    border-bottom: none;
+}
+
+.navPnlClpsblColpsdHdr .iceOutTxt,
+    .navPnlClpsblHdr .iceOutTxt {
+    padding-left: 22px;
+    color: #484848;
+}
+
+.navPnlClpsblColpsdCnt {
+    border: none;
+}
+
+.navPnlClpsblHdr, .navPnlClpsblHdr-dis, .navPnlClpsblColpsdHdr, .navPnlClpsblColpsdHdr-dis {
+    cursor: pointer;
+}
+
+.navPnlClpsblHdr div, .navPnlClpsblHdr-dis div, .navPnlClpsblColpsdHdr div, .navPnlClpsblColpsdHdr-dis div {
+    background-repeat: no-repeat;
+    background-position: left top;
+    height: 18px;
+}
+/* -------------------------- */
+.navPnlClpsbl a, .navPnlClpsblHdr a, .navPnlClpsblColpsdHdr a{
+    color: #444444;
+}
+.navPnlClpsblWrapper {
+    margin-top: 20px;
+    display: block;
+    float: left;
+}
+
+.navPnlClpsblLnks .iceOutTxt {
+}
+
+.navPnlClpsblLnks span, .navPnlClpsblLnks.nodec, .navPnlClpsblLnks:link,
+    .navPnlClpsblLnks:hover, .navPnlClpsblLnks:visited {
+    color: #004080;
+}
+
+.navPnlClpsblLnks:link, .navPnlClpsblLnks:visited {
+    text-decoration: none;
+}
+
+.navPnlClpsblLnks:hover {
+    text-decoration: underline;
+}
+
+.navPnlClpsblEnd {
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.navPnlClpsblHdr .iceCmdLnk, .navPnlClpsblColpsdHdr .iceCmdLnk {
+    padding-left: 18px;
+}
+
+.navPnlClpsblHdr div, .navPnlClpsblHdr-dis div  {
+    background: url( './images/navigation_tree/tree_folder_open.gif' ) no-repeat 0 3px;
+    margin:0 0 0 -2px;  
+    padding:1px 0 0 5px;
+    background-position: 3px 2px;      
+}
+.navPnlClpsblColpsdHdr div, .navPnlClpsblColpsdHdr-dis div {
+    background: url( './images/navigation_tree/tree_folder_closed.gif' ) no-repeat 0 3px;
+    margin:0 0 0 -2px;  
+    padding:1px 0 0 5px;
+    background-position: 3px 2px;  
+}
+/* end of navigation panel collapsible */
+
+
+/* AUTOCOMPLETE EXAMPLE */
+
+.cityCol {
+    width: 125px;
+}
+
+.stateCol {
+    width: 125px;
+}
+
+.zipCol {
+    width: 50px;
+}
+
+.serverFeedbackBorderHighlight {
+    vertical-align: top;
+    border: 1px solid #CCCCCC;
+    padding: 10px;
+    width: 300px;
+}
+
+.iceSelInpTxtRow, .iceSelInpTxtSelRow {
+    height: 15px;
+}
+
+.iceSelInpTxtSelRow {
+    color: #FFFFFF;
+}
+
+/* END AUTOCOMPLETE EXAMPLE */
+
+/* COLUMNS EXAMPLE */
+
+.columnsColumn, .columnsNestedColumn, .columnsNestedBoldColumn {
+    white-space: nowrap;
+    color: #000000;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+}
+
+.columnsColumn {
+    border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+    width: 55px;
+}
+
+/* END COLUMNS EXAMPLE */
+
+/* MENUBAR EXAMPLE */
+
+.menuHeadingItem a {
+    width: 144px;
+}
+
+.orientationLabel {
+    display: inline;
+    float: left;
+}
+
+.orientationRadioBtn label {
+    vertical-align: top;
+}
+
+/* END MENUBAR EXAMPLE */
+
+/* MENUPOPUP EXAMPLE */
+.menuPopupEffectsVrtSubMenuInd {
+    padding-top: 0px;
+}
+/* END MENUPOPUP EXAMPLE */
+
+/* PANELBORDER.JSPX */
+.pnlBrdrDemo {
+    margin: 15px 15px 0 0;
+    display: block;
+    float: left;
+    padding: 15px;
+}
+
+.pnlBrdrDemoNorth, .pnlBrdrDemoEast, .pnlBrdrDemoWest, .pnlBrdrDemoCenter, .pnlBrdrDemoSouth {
+    border: 1px solid #CCCCCC;
+    background-color: #EEEEEE;
+    padding: 5px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.pnlBrdrDemoNorth, .pnlBrdrDemoSouth {
+    height: 60px;
+}
+.pnlBrdrDemoEast, .pnlBrdrDemoWest{
+    width:100px;
+}
+.pnlBrdrDemoEast, .pnlBrdrDemoWest, .pnlBrdrDemoCenter {
+    height: 100px;
+}
+
+/* END PANELBORDER.JSPX */
+
+/* SELECTINPUTDATE.JSPX */
+.weekend a {
+    background-color: #999999;
+}
+
+.weekend a span {
+    color: white;
+}
+
+.august span {
+    font-weight: bold;
+}
+
+/* END SELECTINPUTDATE.JSPX */
+
+/* GMAP.JSPX */
+.iceGmpMapTd div.gmap {
+    width: 545px;
+    height: 350px;
+    border: 3px inset #555555;
+}
+
+/* END GMAP.JSPX */
+
+/* PANELPOPUP.JSPX */
+
+.corePopup {
+    position: absolute;
+    z-index: 1001;
+    width: 300px;
+    height: 150px;
+    top: 60%;
+    left: 40%;
+}
+
+.corePopup table {
+    width: 100%;
+}
+
+.popupBody {
+    margin-top: 25px;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.popupHeaderWrapper {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.popupHeaderText {
+    float: left;
+}
+
+.popupHeaderImage {
+    float: right;
+    margin-top: 2px;
+    margin-right: 2px;
+}
+
+/* END PANELPOPUP.JSPX */
+
+/* START PANELPOSITIONABLE */
+
+.positionPanelContainer{
+    /*border: 1px solid #d9d9d9;    */
+}
+.rankPanelContainer  span, .rankPanelContainer  span{
+    font-weight: normal;
+}
+
+.positionPanelContainer div.container{
+    background: #FFF url( '../xmlhttp/css/rime/css-images/PnlHdr_bgslice.gif' ) repeat-x top left;
+    color: #484848;
+    padding-left: 5px;
+    font-weight: normal;
+    width: 125px;
+    border: 1px solid #d9d9d9;
+}
+
+.positionPanelContainer div.moveLabel{
+    background: url( '../images/move_arrows.gif' ) no-repeat center left;
+    padding: 6px 0 0 25px;
+    height: 20px;
+}
+.rankPanelContainer div{
+    padding: 6px 0 0 5px;
+    border: 1px solid white;
+    height: 20px;
+}
+
+
+/* END PANELPOSITIONABLE */
+
+/* START PANEL TABSET  */
+.tabsetControls div{
+    float: left;
+    margin-left: 3px;
+    vertical-align: middle;
+}
+.tabsetControls div div{
+    float: left;
+    margin: 3px;
+    vertical-align: middle;
+}
+/* END PANEL TABSET  */
+
+/* START PANEL STACK  */
+.panelStackContainer table.icePnlStk {
+    width:100%;
+}
+.stackExamplePanel table{
+    width:100%;
+    padding:0;
+    margin:0;
+    background-color: #F5F5F5;
+    border-left: 1px solid #DADADA;
+    border-top: 1px solid #DADADA;
+}
+.stackExamplePanel table td{
+    padding: 25px;
+    border-right: 1px solid #DADADA;
+    border-bottom: 1px solid #DADADA;
+}
+.stackExamplePanel span{
+    font-weight: bold;
+}
+.stackExamplePanel a span{
+    font-weight: normal;
+}
+/* END PANEL STACK  */
+/* START PANEL SERIES  */
+.panelSeriesContainer .employeeBox{
+    width:200px;
+    border: 1px solid #DADADA;
+    /*padding: 10px;*/
+    margin: 5px;
+    float: left;
+}
+.exampleBox.panelSeriesContainer {
+    width: 424px;
+}
+/* END PANEL SERIES  */
+/* START PANEL TOOLTIP  */
+.panelToolTipInvnItem{
+    float:left;
+    margin: 8px;
+    border: 1px solid #DADADA;
+    text-align: center;
+}
+.icePnlTlTip table {
+    width: 100%;
+}
+/* END PANEL TOOLTIP  */
+
+/* START OUTPUT PROGRESS */
+.uploadProgressBar .iceOutProg, .uploadProgressBar .iceOutProgBg, .uploadProgressBar {
+    width: 350px;
+}
+/* END OUTPUT PROGRESS */
+
+/* START CONNECTION STATUS   */
+.connectionStatusGraphics{
+    width:100%;
+}
+.connectionStatusGraphics span{
+    font-weight:bold;
+}
+.connectionStatusGraphics td{
+    text-align: center;
+    vertical-align: middle;
+
+}
+/* END CONNECTION STATUS   */
+
+/* START TREE */
+.selectedNodetrue span{
+    font-weight:bold;
+}
+.iceTree a:hover .iceOutTxt {
+    color: #318496;
+}
+/* END TREE */
+
+/* Chart example */
+.chartConfigurationContainer div.firstChildTitle > label:first-child{
+    margin-bottom: 5px;
+    display:block;
+}
+/* end chart example*/
+
+/* media example */
+.mediaSelection {
+
+}
+.mediaSelection  table{
+  width: 250px;
+}
+
+/* end media exmaple*/
+
+.pnlGrdClass {
+    width:70px;
+    text-align:left;
+    vertical-align:top;
+}
+.pnlGrdClassLong {
+    width:200px;
+    text-align:left;
+    vertical-align:top;
+}
+
