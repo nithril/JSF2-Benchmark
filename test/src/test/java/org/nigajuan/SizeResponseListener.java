@@ -2,6 +2,7 @@ package org.nigajuan;
 
 import com.gargoylesoftware.htmlunit.WebRequest;
 import com.gargoylesoftware.htmlunit.WebResponse;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,6 +23,8 @@ public class SizeResponseListener implements IResponseListener {
         if (request.getUrl().getPath().contains(".js.jsf")) {
             js += response.getContentAsString().length();
         } else if (request.getUrl().getPath().contains(".css.jsf")) {
+            css += response.getContentAsString().length();
+        } else if (request.getUrl().getPath().contains(".ecss.jsf")) {
             css += response.getContentAsString().length();
         } else if (request.getUrl().getPath().contains(".jsf")) {
             html += response.getContentAsString().length();
@@ -60,7 +63,9 @@ public class SizeResponseListener implements IResponseListener {
 
     @Override
     public String toString() {
-        return "HTML:" + getHtml() + "\tJS:" + getJs() + "\tCSS:" +
-                       getCss() + "\tTotal:" + getTotal();
+        return "HTML:" + StringUtils.rightPad(String.valueOf(getHtml() >> 10) + "KB", 6) +
+                "JS:" + StringUtils.rightPad(String.valueOf(getJs() >> 10) + "KB", 6) +
+                "CSS:" + StringUtils.rightPad(String.valueOf(getCss() >> 10) + "KB", 6) +
+                "Total:" + StringUtils.rightPad(String.valueOf(getTotal() >> 10) + "KB", 6);
     }
 }
