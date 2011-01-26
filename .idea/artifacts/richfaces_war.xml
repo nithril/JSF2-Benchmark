@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="richfaces:war">
-    <output-path>$PROJECT_DIR$/richfaces/target</output-path>
-    <root id="archive" name="richfaces-1.0.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="richfaces:war exploded" />
-    </root>
-  </artifact>
-</component>

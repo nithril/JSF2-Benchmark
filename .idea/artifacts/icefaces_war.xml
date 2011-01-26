@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="icefaces:war">
-    <output-path>$PROJECT_DIR$/icefaces/target</output-path>
-    <root id="archive" name="icefaces-1.0.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="icefaces:war exploded" />
-    </root>
-  </artifact>
-</component>
