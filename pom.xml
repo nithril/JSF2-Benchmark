@@ -109,13 +109,6 @@
 
 
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>5.12.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.perf4j</groupId>
             <artifactId>perf4j</artifactId>
             <version>0.9.13</version>
