@@ -1,7 +1,14 @@
 package org.nigajuan;
 
+import static ch.lambdaj.Lambda.*;
+import static ch.lambdaj.collection.LambdaCollections.*;
+
+import ch.lambdaj.Lambda;
+import ch.lambdaj.function.matcher.LambdaJMatcher;
 import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.DomNodeList;
+import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -18,6 +25,8 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+
+
 
 /**
  * Created by IntelliJ IDEA.
@@ -36,14 +45,26 @@ public class TestHtmlUnit {
     @DataProvider(name = "pages")
     public Object[][] createPageData(){
         return new Object[][]{
-                {"primefaces1_0_0" , "http://localhost:8080/primefaces1_0_0/datatablePage.jsf" , "yui-pg0-0-next-link"},
-                {"primefaces" , "http://localhost:8080/primefaces/datatablePage.jsf" , "yui-pg0-0-next-link"},
+                {"primefaces1_0_0" , "http://localhost:8080/primefaces1_0_0/datatablePage.jsf" , new ElementFinderById("yui-pg0-0-next-link")},
+                {"primefaces" , "http://localhost:8080/primefaces/datatablePage.jsf" , new IElementFinder() {
+                    @Override
+                    public HtmlElement match(HtmlPage doc) {
+                        DomNodeList<HtmlElement> htmlElements = doc.getElementsByTagName("span");
+                        for (HtmlElement htmlElement : htmlElements){
+                            if (htmlElement.getAttribute("class").equals("ui-paginator-page ui-state-default ui-corner-all") &&
+                                    htmlElement.getTextContent().equals("2")){
+                                return htmlElement;
+                            }
+                        }
+                        return null;
+                    }
+                }},
 
-                {"richfaces1_0_0" , "http://localhost:8080/richfaces1_0_0/datatablePage.jsf", "datatableForm:datatableScroller_ds_next"},
-                {"richfaces" , "http://localhost:8080/richfaces/datatablePage.jsf", "datatableForm:datatableScroller_ds_next"},
+                {"richfaces1_0_0" , "http://localhost:8080/richfaces1_0_0/datatablePage.jsf", new ElementFinderById("datatableForm:datatableScroller_ds_next")},
+                {"richfaces" , "http://localhost:8080/richfaces/datatablePage.jsf", new ElementFinderById("datatableForm:datatableScroller_ds_next")},
 
-                {"icefaces1_0_0", "http://localhost:8080/icefaces1_0_0/datatablePage.jsf", "datatableForm:j_idt6next"},
-                {"icefaces", "http://localhost:8080/icefaces/datatablePage.jsf", "datatableForm:j_idt6next"}
+                //{"icefaces1_0_0", "http://localhost:8080/icefaces1_0_0/datatablePage.jsf", new ElementFinderById("datatableForm:j_idt6next")},
+                //{"icefaces", "http://localhost:8080/icefaces/datatablePage.jsf", new ElementFinderById("datatableForm:j_idt6next")}
         };
     }
 
@@ -54,18 +75,18 @@ public class TestHtmlUnit {
                 {"primefaces" , "http://localhost:8080/primefaces/datatablePage.jsf" , 400},
                 {"richfaces1_0_0" , "http://localhost:8080/richfaces1_0_0/datatablePage.jsf", 400},
                 {"richfaces" , "http://localhost:8080/richfaces/datatablePage.jsf", 400},
-                {"icefaces1_0_0", "http://localhost:8080/icefaces1_0_0/datatablePage.jsf", 400},
-                {"icefaces", "http://localhost:8080/icefaces/datatablePage.jsf", 400}
+               // {"icefaces1_0_0", "http://localhost:8080/icefaces1_0_0/datatablePage.jsf", 400},
+                //{"icefaces", "http://localhost:8080/icefaces/datatablePage.jsf", 400}
         };
     }
     
     @Test(singleThreaded = true , dataProvider = "pages")
-    public void getPage(String name , String url , String nextId) throws Exception {
+    public void getPage(String name , String url , IElementFinder nextId) throws Exception {
         getGenericPage(name, url, nextId);
     }
     
 
-    @Test(singleThreaded = true , dataProvider = "bench")
+    @Test(singleThreaded = true , dataProvider = "bench" , enabled = false)
     public void bench(String name , String url , int iteration) throws Exception {
         MeanCalculator meanCalculator;
         meanCalculator = launchRequestsThread(url, iteration, false);
@@ -121,7 +142,7 @@ public class TestHtmlUnit {
     }
 
 
-    private void getGenericPage(String pageId, String url, String nextId) throws Exception {
+    private void getGenericPage(String pageId, String url, IElementFinder nextId) throws Exception {
         WebClient webClient = new WebClient();
 
         MyWebConnection myWebConnection = new MyWebConnection(webClient);
@@ -135,8 +156,9 @@ public class TestHtmlUnit {
         logger.info(pageId + "\t" + sizeResponseListener.toString());
 
         sizeResponseListener.reset();
-        page.getElementById(nextId).click();
-        page.getElementsByTagName("span");
+
+        nextId.match(page).click();
+
         logger.info(pageId + "\t" + sizeResponseListener.toString());
     }
 
