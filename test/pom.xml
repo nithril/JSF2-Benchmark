@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.4dconcept.benchmark</groupId>
         <artifactId>jsf-benchmark</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -28,6 +28,18 @@
                         <configuration>
                             <resources>
                                 <resource>
+                                    <targetPath>target/web/richfaces1_0_0</targetPath>
+                                    <unpack>true</unpack>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>${project.groupId}</groupId>
+                                            <artifactId>richfaces</artifactId>
+                                            <version>1.0.0</version>
+                                            <type>war</type>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
                                     <targetPath>target/web/richfaces</targetPath>
                                     <unpack>true</unpack>
                                     <dependencies>
@@ -35,6 +47,19 @@
                                             <groupId>${project.groupId}</groupId>
                                             <artifactId>richfaces</artifactId>
                                             <version>${project.version}</version>
+                                            <type>war</type>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+
+                                <resource>
+                                    <targetPath>target/web/primefaces1_0_0</targetPath>
+                                    <unpack>true</unpack>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>${project.groupId}</groupId>
+                                            <artifactId>primefaces</artifactId>
+                                            <version>1.0.0</version>
                                             <type>war</type>
                                         </dependency>
                                     </dependencies>
@@ -47,6 +72,20 @@
                                             <groupId>${project.groupId}</groupId>
                                             <artifactId>primefaces</artifactId>
                                             <version>${project.version}</version>
+                                            <type>war</type>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+
+
+                                <resource>
+                                    <targetPath>target/web/icefaces1_0_0</targetPath>
+                                    <unpack>true</unpack>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>${project.groupId}</groupId>
+                                            <artifactId>icefaces</artifactId>
+                                            <version>1.0.0</version>
                                             <type>war</type>
                                         </dependency>
                                     </dependencies>
@@ -73,7 +112,7 @@
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>7.2.2.v20101205</version>
+                <version>${jetty.version}</version>
                 <configuration>
 
                     <stopPort>9968</stopPort>
@@ -86,17 +125,32 @@
                     </connectors>
                     <contextHandlers>
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <war>target/web/icefaces1_0_0</war>
+                            <contextPath>/icefaces1_0_0</contextPath>
+                        </contextHandler>
+                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
                             <war>target/web/icefaces</war>
                             <contextPath>/icefaces</contextPath>
+                        </contextHandler>
+
+                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <war>target/web/primefaces1_0_0</war>
+                            <contextPath>/primefaces1_0_0</contextPath>
                         </contextHandler>
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
                             <war>target/web/primefaces</war>
                             <contextPath>/primefaces</contextPath>
                         </contextHandler>
+
+                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <war>target/web/richfaces1_0_0</war>
+                            <contextPath>/richfaces1_0_0</contextPath>
+                        </contextHandler>
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
                             <war>target/web/richfaces</war>
                             <contextPath>/richfaces</contextPath>
                         </contextHandler>
+
                     </contextHandlers>
                 </configuration>
 
@@ -141,6 +195,7 @@
                             <includes>
                                 <include>**/TestHtmlUnit.java</include>
                             </includes>
+                            <argLine>-Xms512m -Xmx2048m</argLine>
                         </configuration>
                     </execution>
                     <execution>

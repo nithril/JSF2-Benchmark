@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -32,42 +33,45 @@ public class TestHtmlUnit {
     private static final Logger logger = LoggerFactory.getLogger(TestHtmlUnit.class);
 
 
-    @Test(singleThreaded = true)
-    public void getPrimefacesPage() throws Exception {
-        getGenericPage("primefaces", "http://localhost:8080/primefaces/datatablePage.jsf", "yui-pg0-0-next-link");
+    @DataProvider(name = "pages")
+    public Object[][] createPageData(){
+        return new Object[][]{
+                {"primefaces1_0_0" , "http://localhost:8080/primefaces1_0_0/datatablePage.jsf" , "yui-pg0-0-next-link"},
+                {"primefaces" , "http://localhost:8080/primefaces/datatablePage.jsf" , "yui-pg0-0-next-link"},
+
+                {"richfaces1_0_0" , "http://localhost:8080/richfaces1_0_0/datatablePage.jsf", "datatableForm:datatableScroller_ds_next"},
+                {"richfaces" , "http://localhost:8080/richfaces/datatablePage.jsf", "datatableForm:datatableScroller_ds_next"},
+
+                {"icefaces1_0_0", "http://localhost:8080/icefaces1_0_0/datatablePage.jsf", "datatableForm:j_idt6next"},
+                {"icefaces", "http://localhost:8080/icefaces/datatablePage.jsf", "datatableForm:j_idt6next"}
+        };
     }
 
-    @Test(singleThreaded = true)
-    public void getRichfacesPage() throws Exception {
-        getGenericPage("richfaces", "http://localhost:8081/richfaces/datatablePage.jsf", "datatableForm:datatableScroller_ds_next");
+    @DataProvider(name = "bench")
+    public Object[][] createBenchData(){
+        return new Object[][]{
+                {"primefaces1_0_0" , "http://localhost:8080/primefaces1_0_0/datatablePage.jsf" , 400},
+                {"primefaces" , "http://localhost:8080/primefaces/datatablePage.jsf" , 400},
+                {"richfaces1_0_0" , "http://localhost:8080/richfaces1_0_0/datatablePage.jsf", 400},
+                {"richfaces" , "http://localhost:8080/richfaces/datatablePage.jsf", 400},
+                {"icefaces1_0_0", "http://localhost:8080/icefaces1_0_0/datatablePage.jsf", 400},
+                {"icefaces", "http://localhost:8080/icefaces/datatablePage.jsf", 400}
+        };
     }
-
-    @Test(singleThreaded = true)
-    public void getIcefacesPage() throws Exception {
-        getGenericPage("icefaces", "http://localhost:8080/icefaces/datatablePage.jsf", "datatableForm:j_idt6next");
+    
+    @Test(singleThreaded = true , dataProvider = "pages")
+    public void getPage(String name , String url , String nextId) throws Exception {
+        getGenericPage(name, url, nextId);
     }
+    
 
-
-    @Test(singleThreaded = true)
-    public void benchPrimefaces() throws Exception {
+    @Test(singleThreaded = true , dataProvider = "bench")
+    public void bench(String name , String url , int iteration) throws Exception {
         MeanCalculator meanCalculator;
-        meanCalculator = launchRequestsThread("http://localhost:8080/primefaces/datatablePage.jsf", 400, false);
-        logger.info("benchPrimefaces session " + meanCalculator.getSum() + "/" + meanCalculator.getCount() + "=" + meanCalculator.mean());
+        meanCalculator = launchRequestsThread(url, iteration, false);
+        logger.info(name + " " + meanCalculator.getSum() + "/" + meanCalculator.getCount() + "=" + meanCalculator.mean());
     }
 
-    @Test(singleThreaded = true)
-    public void benchIcefaces() throws Exception {
-        MeanCalculator meanCalculator;
-        meanCalculator = launchRequestsThread("http://localhost:8080/icefaces/datatablePage.jsf", 400, false);
-        logger.info("benchIcefaces session " + meanCalculator.getSum() + "/" + meanCalculator.getCount() + "=" + meanCalculator.mean());
-    }
-
-    @Test(singleThreaded = true)
-    public void benchRichfaces() throws Exception {
-        MeanCalculator meanCalculator;
-        meanCalculator = launchRequestsThread("http://localhost:8081/richfaces/datatablePage.jsf", 400, false);
-        logger.info("benchRichfaces session " + meanCalculator.getSum() + "/" + meanCalculator.getCount() + "=" + meanCalculator.mean());
-    }
 
 
     private MeanCalculator launchRequestsThread(final String url, final int iteration, final boolean clearCoockies) throws Exception {
@@ -132,6 +136,7 @@ public class TestHtmlUnit {
 
         sizeResponseListener.reset();
         page.getElementById(nextId).click();
+        page.getElementsByTagName("span");
         logger.info(pageId + "\t" + sizeResponseListener.toString());
     }
 
