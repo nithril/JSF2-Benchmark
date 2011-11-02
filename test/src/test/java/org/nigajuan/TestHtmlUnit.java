@@ -39,7 +39,7 @@ public class TestHtmlUnit {
 
     @Test(singleThreaded = true)
     public void getRichfacesPage() throws Exception {
-        getGenericPage("richfaces", "http://localhost:8080/richfaces/datatablePage.jsf", "datatableForm:datatableScroller_ds_next");
+        getGenericPage("richfaces", "http://localhost:8081/richfaces/datatablePage.jsf", "datatableForm:datatableScroller_ds_next");
     }
 
     @Test(singleThreaded = true)
@@ -62,10 +62,10 @@ public class TestHtmlUnit {
         logger.info("benchIcefaces session " + meanCalculator.getSum() + "/" + meanCalculator.getCount() + "=" + meanCalculator.mean());
     }
 
-    @Test(sequential = true)
+    @Test(singleThreaded = true)
     public void benchRichfaces() throws Exception {
         MeanCalculator meanCalculator;
-        meanCalculator = launchRequestsThread("http://localhost:8080/richfaces/datatablePage.jsf", 400, false);
+        meanCalculator = launchRequestsThread("http://localhost:8081/richfaces/datatablePage.jsf", 400, false);
         logger.info("benchRichfaces session " + meanCalculator.getSum() + "/" + meanCalculator.getCount() + "=" + meanCalculator.mean());
     }
 

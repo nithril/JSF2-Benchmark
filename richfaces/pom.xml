@@ -13,7 +13,10 @@
     <packaging>war</packaging>
 
     <properties>
-        <org.richfaces.bom.version>4.0.0.20101110-M4</org.richfaces.bom.version>
+        <!--
+        <org.richfaces.bom.version>4.1.0.20111014-M3</org.richfaces.bom.version>
+        -->
+        <org.richfaces.bom.version>4.1.0.20111014-M3</org.richfaces.bom.version>
     </properties>
 
     <build>
@@ -21,7 +24,7 @@
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>7.2.2.v20101205</version>
+                <version>7.5.4.v20111024</version>
                 <configuration>
                     <stopPort>9967</stopPort>
                     <stopKey>foo</stopKey>
@@ -41,13 +44,20 @@
 
     <dependencies>
 
-
+      <!--
         <dependency>
             <groupId>org.richfaces</groupId>
             <artifactId>richfaces-bom</artifactId>
             <version>${org.richfaces.bom.version}</version>
             <scope>import</scope>
             <type>pom</type>
+        </dependency>
+                    -->
+
+        <dependency>
+            <groupId>org.richfaces.core</groupId>
+            <artifactId>richfaces-core-impl</artifactId>
+            <version>${org.richfaces.bom.version}</version>
         </dependency>
 
         <dependency>
