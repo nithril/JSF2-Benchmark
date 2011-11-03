@@ -63,8 +63,32 @@ public class TestHtmlUnit {
                 {"richfaces1_0_0" , "http://localhost:8080/richfaces1_0_0/datatablePage.jsf", new ElementFinderById("datatableForm:datatableScroller_ds_next")},
                 {"richfaces" , "http://localhost:8080/richfaces/datatablePage.jsf", new ElementFinderById("datatableForm:datatableScroller_ds_next")},
 
-                //{"icefaces1_0_0", "http://localhost:8080/icefaces1_0_0/datatablePage.jsf", new ElementFinderById("datatableForm:j_idt6next")},
-                //{"icefaces", "http://localhost:8080/icefaces/datatablePage.jsf", new ElementFinderById("datatableForm:j_idt6next")}
+                {"icefaces1_0_0", "http://localhost:8080/icefaces1_0_0/datatablePage.jsf",  new IElementFinder() {
+                                    @Override
+                                    public HtmlElement match(HtmlPage doc) {
+                                        DomNodeList<HtmlElement> htmlElements = doc.getElementsByTagName("a");
+                                        for (HtmlElement htmlElement : htmlElements){
+                                            if (htmlElement.getTextContent().equals("2")){
+                                                return htmlElement;
+                                            }
+                                        }
+                                        return null;
+                                    }
+                                }},
+                {"icefaces", "http://localhost:8080/icefaces/datatablePage.jsf",  new IElementFinder() {
+                                    @Override
+                                    public HtmlElement match(HtmlPage doc) {
+                                        DomNodeList<HtmlElement> htmlElements = doc.getElementsByTagName("a");
+                                        for (HtmlElement htmlElement : htmlElements){
+                                            if (htmlElement.getTextContent().equals("2")){
+                                                return htmlElement;
+                                            }
+                                        }
+                                        return null;
+                                    }
+                                }},
+                {"vaadin" , "http://localhost:8081/vaadin/index.html", new ElementFinderById("datatableForm:datatableScroller_ds_next")},
+
         };
     }
 
@@ -75,8 +99,9 @@ public class TestHtmlUnit {
                 {"primefaces" , "http://localhost:8080/primefaces/datatablePage.jsf" , 400},
                 {"richfaces1_0_0" , "http://localhost:8080/richfaces1_0_0/datatablePage.jsf", 400},
                 {"richfaces" , "http://localhost:8080/richfaces/datatablePage.jsf", 400},
-               // {"icefaces1_0_0", "http://localhost:8080/icefaces1_0_0/datatablePage.jsf", 400},
-                //{"icefaces", "http://localhost:8080/icefaces/datatablePage.jsf", 400}
+                {"icefaces1_0_0", "http://localhost:8080/icefaces1_0_0/datatablePage.jsf", 400},
+                {"icefaces", "http://localhost:8080/icefaces/datatablePage.jsf", 400},
+                {"vaadin", "http://localhost:8081/vaadin/index.html", 400}
         };
     }
     
@@ -86,7 +111,7 @@ public class TestHtmlUnit {
     }
     
 
-    @Test(singleThreaded = true , dataProvider = "bench" , enabled = false)
+    @Test(singleThreaded = true , dataProvider = "bench" , enabled = true)
     public void bench(String name , String url , int iteration) throws Exception {
         MeanCalculator meanCalculator;
         meanCalculator = launchRequestsThread(url, iteration, false);
@@ -124,6 +149,7 @@ public class TestHtmlUnit {
                 ResponseHandler<byte[]> responseHandler = new ResponseHandler<byte[]>() {
                     @Override
                     public byte[] handleResponse(HttpResponse httpResponse) throws ClientProtocolException, IOException {
+                        assert httpResponse.getStatusLine().getStatusCode() == 200;
                         return null;
                     }
                 };
@@ -152,8 +178,14 @@ public class TestHtmlUnit {
 
         webClient.setWebConnection(myWebConnection);
         webClient.setAjaxController(new NicelyResynchronizingAjaxController());
+        webClient.setThrowExceptionOnFailingStatusCode(false);
         HtmlPage page = webClient.getPage(url);
+
+        webClient.waitForBackgroundJavaScript(10000);
+
         logger.info(pageId + "\t" + sizeResponseListener.toString());
+
+
 
         sizeResponseListener.reset();
 

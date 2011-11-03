@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app id="WebApp_ID">
+	<display-name>AddressBook</display-name>
+	<!-- ApplicationServlet from Vaadin jar will respond to requests. -->
+	<servlet>
+		<servlet-name>AddressBook</servlet-name>
+		<servlet-class>com.vaadin.terminal.gwt.server.ApplicationServlet</servlet-class>
+		<init-param>
+			<!-- Define our application class for servlet. -->
+			<param-name>application</param-name>
+	    	<param-value>org.nigajuan.vaadin.SimpleAddressBook</param-value>
+		</init-param>
+	</servlet>
+
+	<!-- Make the servlet respond to all requests. -->
+	<servlet-mapping>
+		<servlet-name>AddressBook</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+</web-app>
